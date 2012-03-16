@@ -18,23 +18,41 @@ def out_entries(entries, column_types):
     buff.append('</row>')
   return buff
 
-def table_header(title, setting_key, description, headings, default_value):
-  column_count = len(headings)
+def table_start(title, setting_key, column_count):
   buff = []
-  buff.append('<table tabstyle="table" role="configsetting" frame="all" rowsep="1" colsep="1">')
+  buff.append('<table id="')
+  buff.append(setting_key)
+  buff.append('" tabstyle="configsetting table" role="configsetting" frame="all" rowsep="1" colsep="1">')
   buff.append('<title>')
   buff.append(title)
   buff.append('</title>')
   buff.append('<tgroup cols="')
   buff.append(str(column_count))
   buff.append('">')
-  column_types = []
   for i in range(1, column_count + 1):
     buff.append('<colspec colname="col')
     buff.append(str(i))
     buff.append('"/>')
-    column_types.append("default")
+  return buff
+
+def table_head(intro):
+  buff = []
   buff.append('<thead>')
+  buff.extend(intro)
+  buff.append('</thead>')
+  return buff;
+
+def table_footer(default_value, column_count):
+  buff = []
+  buff.append('<tfoot><row><entry role="configsetting-default" align="left" valign="top" namest="col1" nameend="col')
+  buff.append(str(column_count))
+  buff.append('">Default value: <literal>')
+  buff.append(default_value)
+  buff.append('</literal></entry></row></tfoot>')
+  return buff;
+
+def config_intro(setting_key, description, column_count):
+  buff = []
   buff.append('<row><entry align="left" valign="top" namest="col1" nameend="col')
   buff.append(str(column_count))
   buff.append('"><simpara role="configsetting-key"><literal>')
@@ -43,14 +61,6 @@ def table_header(title, setting_key, description, headings, default_value):
   buff.append(description)
   buff.append('</simpara>')
   buff.append('</entry></row>') 
-  buff.extend(out_entries([headings], column_types))
-  buff.append('</thead>')
-  if default_value is not None:
-    buff.append('<tfoot><row><entry role="configsetting-default" align="left" valign="top" namest="col1" nameend="col')
-    buff.append(str(column_count))
-    buff.append('">Default value: <literal>')
-    buff.append(default_value)
-    buff.append('</literal></entry></row></tfoot>')
   return buff
 
 
@@ -74,6 +84,8 @@ column_types = ["mono"]
 body = []
 body.append('<tbody>')
 
+head = []
+
 has_value_descriptions = False
 rows = []
 for line in data:
@@ -96,13 +108,21 @@ if len(rows) > 0:
     rows[0].insert(0, "min")
   elif setting_type == "max":
     rows[0].insert(0, "max")
+  column_count = len(headings)
+  head.extend(config_intro(setting_key, description, column_count))
+  head.extend(out_entries([headings], ["default"] * column_count))
+  body.extend(out_entries(rows, column_types))
 else:
-  rows.append([""])
+  column_count = 1
+  body.extend(config_intro(setting_key, description, column_count))
 
-body.extend(out_entries(rows, column_types))
 body.append('</tbody>')
 
-sys.stdout.write(''.join(table_header(title, setting_key, description, headings, default_value)))
+sys.stdout.write(''.join(table_start(title, setting_key, column_count)))
+if len(head) > 0:
+  sys.stdout.write(''.join(table_head(head)))  
+if default_value is not None:
+  sys.stdout.write(''.join(table_footer(default_value, column_count)))
 sys.stdout.write(''.join(body))
 sys.stdout.write('</tgroup>')
 sys.stdout.write('</table>')
