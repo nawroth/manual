@@ -29,3 +29,11 @@ include::comparing.txt[]
 
 include::the-neo4j-graphdb.txt[]
 
+:leveloffset: 1
+
+[[configsettings]]
+Config Settings Test
+====================
+
+include::test.txt[]
+
