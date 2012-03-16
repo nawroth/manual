@@ -7,8 +7,6 @@ def out_entries(entries, column_types):
   buff = []
   for entry in entries:
     buff.append('<row>')
-#    if type(entry) is str:
-#      entry = [entry]
     for index, content in enumerate(entry):
       buff.append('<entry align="left" valign="top">')
       if column_types[index] == "mono":
@@ -48,7 +46,7 @@ def table_header(title, setting_key, description, headings, default_value):
   buff.extend(out_entries([headings], column_types))
   buff.append('</thead>')
   if default_value is not None:
-    buff.append('<tfoot><row><entry align="left" valign="top" namest="col1" nameend="col')
+    buff.append('<tfoot><row><entry role="configsetting-default" align="left" valign="top" namest="col1" nameend="col')
     buff.append(str(column_count))
     buff.append('">Default value: <literal>')
     buff.append(default_value)

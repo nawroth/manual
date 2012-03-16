@@ -457,3 +457,13 @@ div.titlepage hr
   margin: 0;
 }
 
+p.configsetting-key
+{
+  margin-bottom: 0;
+}
+p.configsetting-desc
+{
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
