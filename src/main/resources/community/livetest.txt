@@ -17,3 +17,10 @@ One more test, with no title.
 start n = node(2) return n
 ----
 
+One more test, with no title or database specified.
+
+["cypherconsole"]
+----
+start n = node(3) return n
+----
+
