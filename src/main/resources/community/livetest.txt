@@ -1,0 +1,19 @@
+[[livetest]]
+Livetest
+========
+
+This is live testing.
+
+.This is a live database console
+["cypherconsole", "db1"]
+----
+start n = node(0) return n
+----
+
+One more test, with no title.
+
+["cypherconsole", "db2"]
+----
+start n = node(2) return n
+----
+
