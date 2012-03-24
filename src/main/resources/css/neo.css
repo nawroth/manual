@@ -1,15 +1,5 @@
-span.remark {
-  background: yellow;
-}
-td p {
-  margin: 0.125em 0;
-}
-#disqus_thread {
-  max-width: 40em;
-}
-body #toolbar_item command_help {
-  /* display: none !important; */
-}
+@import url("fonts.css");
+
 .syntaxhighlighter a,
 .syntaxhighlighter div,
 .syntaxhighlighter code,
@@ -18,31 +8,18 @@ body #toolbar_item command_help {
 .syntaxhighlighter table tr,
 .syntaxhighlighter table tbody,
 .syntaxhighlighter table thead,
-.syntaxhighlighter table caption,
+.syntaxhighlighter table caption,Inconsolata
 .syntaxhighlighter textarea {
   font-size: 14px !important;
-  font-family: Consolas, Monaco,"Bitstream Vera Sans Mono", monospace !important;
+  font-family: "Ubuntu Mono", Consolas, Monaco, "Bitstream Vera Sans Mono", monospace !important;
   line-height: 18px !important;
-}
-
-html
-{
-  background: url("header-bg.png") repeat-x;
-}
-
-html body
-{
-  background: url("logo.gif") no-repeat 100% 24px;
-  margin: 0 5%;
-  position: absolute;
-  width: 90%;
-  padding-top: 14px;
 }
 
 body, div.navheader th, div.navheader td, div.navfooter td
 {
-  font-family: "Lucida Bright", Cambria, serif;
+  font-family: "Linux Libertine", "Lucida Bright", Cambria, serif;
 }
+
 
 h1, h2, h3, h4, h5, h6,
 div.toc p b,
@@ -57,7 +34,52 @@ tr.question td b p,
 div.abstract p.title b
 {
   color: #15708E;
-  font-family: Candara, Myriad Pro, Myriad, "Lucida Sans","Trebuchet MS",sans-serif;
+  font-family: "Linux Biolinum O", Candara, Myriad Pro, Myriad, "Lucida Sans","Trebuchet MS",sans-serif;
+}
+
+p, li, dt, div.navheader th, div.navheader td, div.navfooter td
+{
+  font-family: "Linux Libertine", "Lucida Bright", Cambria, serif;
+  font-size: .9375em;
+}
+
+code.literal
+{
+  font-family: "Ubuntu Mono", Consolas, Monaco, monospace;
+  font-size: .9375em;
+}
+
+div.queryresult table thead th,
+div.configsetting table thead th
+{
+  font-family: "Ubuntu Mono", Consolas, Monaco, monospace;
+}
+
+
+span.remark {
+  background: yellow;
+}
+td p {
+  margin: 0.125em 0;
+}
+#disqus_thread {
+  max-width: 40em;
+}
+body #toolbar_item command_help {
+  /* display: none !important; */
+}
+html
+{
+  background: url("header-bg.png") repeat-x;
+}
+
+html body
+{
+  background: url("logo.gif") no-repeat 100% 24px;
+  margin: 0 5%;
+  position: absolute;
+  width: 90%;
+  padding-top: 14px;
 }
 
 body h4.title
@@ -195,12 +217,6 @@ div.refnamediv p
   line-height: 1.2;
 }
 
-p, li, dt, div.navheader th, div.navheader td, div.navfooter td
-{
-  font-family: "Lucida Bright", Cambria, serif;
-  font-size: .9375em;
-}
-
 p, ul, ol
 {
   margin-top: 0;
@@ -231,12 +247,6 @@ div.toc
 p.copyright
 {
   margin-top: 20px;
-}
-
-code.literal
-{
-  font-family: Consolas, Monaco, monospace;
-  font-size: .9375em;
 }
 
 td code.literal

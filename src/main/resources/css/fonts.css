@@ -1,0 +1,67 @@
+
+/*
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Inconsolata'), url('http://themes.googleusercontent.com/static/fonts/inconsolata/v5/BjAYBlHtW3CJxDcjzrnZCIbN6UDyHWBl620a-IRfuBk.woff') format('woff'),
+  url('Inconsolata.ttf') format('truetype');
+}
+*/
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: normal;
+  src: url('UbuntuMono-R-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: bold;
+  src: url('UbuntuMono-B-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Linux Biolinum O';
+  font-style: normal;
+  font-weight: normal;
+  src: url('LinBiolinum_R.woff') format('woff');
+}
+@font-face {
+  font-family: 'Linux Biolinum O';
+  font-style: italic;
+  font-weight: normal;
+  src: url('LinBiolinum_RI.woff') format('woff');
+}
+@font-face {
+  font-family: 'Linux Biolinum O';
+  font-style: normal;
+  font-weight: bold;
+  src: url('LinBiolinum_RB.woff') format('woff');
+}
+@font-face {
+  font-family: 'Linux Libertine';
+  font-style: normal;
+  font-weight: normal;
+  src: url('LinLibertine_R.woff') format('woff');
+}
+@font-face {
+  font-family: 'Linux Libertine';
+  font-style: italic;
+  font-weight: normal;
+  src: url('LinLibertine_RI.woff') format('woff');
+}
+@font-face {
+  font-family: 'Linux Libertine';
+  font-style: normal;
+  font-weight: bold;
+  src: url('LinLibertine_RB.woff') format('woff');
+}
+@font-face {
+  font-family: 'Linux Libertine';
+  font-style: italic;
+  font-weight: bold;
+  src: url('LinLibertine_RBI.woff') format('woff');
+}
+
