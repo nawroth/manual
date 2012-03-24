@@ -491,3 +491,14 @@ div.configsetting table tfoot th
   font-weight: normal;
 }
 
+p.cypherconsole
+{
+  display: none;
+}
+
+button.cypherconsole img
+{
+  vertical-align: bottom;
+  padding-right: .5em;
+}
+
