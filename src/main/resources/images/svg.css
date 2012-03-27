@@ -1,0 +1,16 @@
+
+@font-face
+{
+  font-family: 'Liberation Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: url('LiberationSans-Bold-webfont.woff') format('woff'),
+    url('LiberationSans-Bold-webfont.ttf') format('truetype');
+}
+
+text
+{
+  font-family: "Liberation Sans";
+  font-weight: bold;
+}
+

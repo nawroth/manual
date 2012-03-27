@@ -1,5 +1,17 @@
 #!/bin/bash
 
+
+fontpath=$1
+targetimage=$2
+generategraphviz=$3
+colorset=$4
+
+if [[ "$generategraphviz" == "0" ]]
+then
+  echo ""
+  exit 0
+fi
+
 nodefontsize=10
 edgefontsize=$nodefontsize
 nodefontcolor="#1c2021" # darker grey
@@ -11,10 +23,6 @@ nodefillcolor="#ffffff"
 nodehighlight="#fcee7d" # lighter yellow
 nodehighlight2="#fcc574" # lighter orange
 nodeshape=box
-
-fontpath=$1
-targetimage=$2
-colorset=$3
 
 # "#a8e270" # lighter green
 # "#95bbe3" # lighter blue
@@ -51,7 +59,7 @@ indata=${indata//TEXTNODE/$textnode}
 svgfile=$targetimage
 pngfile="${svgfile}.png"
 
-graphfont="FreeSans"
+graphfont="Liberation Sans"
 nodefont=$graphfont
 edgefont=$graphfont
 
@@ -67,7 +75,7 @@ prepend="digraph g{ $graphsettings\
   fontname=\"$graphfont\" "
 
 echo "${prepend} ${indata} }" | dot -Tpng -o"$pngfile"
-echo "${prepend} ${indata} }" | dot -Tsvg -o"$svgfile"
+echo "${prepend} ${indata} }" | dot -Tsvg | sed -e 's/ font-family="Liberation Sans"//g' -e 's/?>/?><?xml-stylesheet type="text\/css" href="svg.css" ?>/' > "$svgfile"
 #echo "${prepend} ${indata} }" > "${svgfile}.dot"
 
 echo ""

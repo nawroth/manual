@@ -167,7 +167,7 @@ docbook-html:  manpages copyimages
 	#
 	#
 	mkdir -p "$(BUILDDIR)"
-	"$(ASCIIDOC)" $(ASCIIDOC_FLAGS) --backend docbook --attribute docinfo1 --doctype book --conf-file="$(CONFDIR)/asciidoc.conf" --conf-file="$(CONFDIR)/docbook45.conf" --conf-file="$(CONFDIR)/linkedimages.conf" --out-file "$(DOCBOOKFILEHTML)" "$(SRCFILE)" 2>&1 | "$(SCRIPTDIR)/outputcheck-includefiles.sh"
+	"$(ASCIIDOC)" $(ASCIIDOC_FLAGS) --backend docbook --attribute docinfo1 --attribute generategraphviz=1 --doctype book --conf-file="$(CONFDIR)/asciidoc.conf" --conf-file="$(CONFDIR)/docbook45.conf" --conf-file="$(CONFDIR)/linkedimages.conf" --out-file "$(DOCBOOKFILEHTML)" "$(SRCFILE)" 2>&1 | "$(SCRIPTDIR)/outputcheck-includefiles.sh"
 	xmllint --nonet --noout --xinclude --postvalid "$(DOCBOOKFILEHTML)"
 
 pdf: docbook-shortinfo copyimages
@@ -198,6 +198,9 @@ html: manpages copyimages docbook-html
 	cp -fr "$(JSDIR)" "$(CHUNKEDHTMLDIR)/js"
 	cp -fr "$(CSSDIR)/"* "$(CHUNKEDHTMLDIR)/css"
 	cp -fr "$(SRCDIR)/images/"*.png "$(CHUNKEDHTMLDIR)/images"
+	cp -fr "$(SRCDIR)/images/"*.css "$(CHUNKEDHTMLDIR)/images"
+	cp -fr "$(SRCDIR)/images/"*.ttf "$(CHUNKEDHTMLDIR)/images"
+	cp -fr "$(SRCDIR)/images/"*.woff "$(CHUNKEDHTMLDIR)/images"
 
 offline-html:  manpages copyimages docbook-html
 	#
@@ -211,6 +214,9 @@ offline-html:  manpages copyimages docbook-html
 	cp -fr "$(JSDIR)" "$(CHUNKEDOFFLINEHTMLDIR)/js"
 	cp -fr "$(CSSDIR)/"* "$(CHUNKEDOFFLINEHTMLDIR)/css/"
 	cp -fr "$(SRCDIR)/images/"*.png "$(CHUNKEDOFFLINEHTMLDIR)/images"
+	cp -fr "$(SRCDIR)/images/"*.css "$(CHUNKEDOFFLINEHTMLDIR)/images"
+	cp -fr "$(SRCDIR)/images/"*.ttf "$(CHUNKEDOFFLINEHTMLDIR)/images"
+	cp -fr "$(SRCDIR)/images/"*.woff "$(CHUNKEDOFFLINEHTMLDIR)/images"
 
 # currently builds docbook format first
 singlehtml:  dist

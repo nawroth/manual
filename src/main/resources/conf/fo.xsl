@@ -28,7 +28,7 @@
 <!-- justify, left or right -->
 <xsl:param name="alignment">left</xsl:param>
 
-<xsl:param name="body.font.family" select="'FreeSerif'"/> <!-- neo -->
+<xsl:param name="body.font.family" select="'Linux Libertine'"/> <!-- neo -->
 <xsl:param name="body.font.master">12</xsl:param>
 <xsl:param name="body.font.size">
  <xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
@@ -164,8 +164,8 @@
 
 <xsl:param name="generate.section.toc.level" select="0"></xsl:param>
 
-<xsl:param name="title.font.family" select="'FreeSans'"/>
-<xsl:param name="monospace.font.family" select="'Inconsolata'"/>
+<xsl:param name="title.font.family" select="'Linux Biolinum'"/>
+<xsl:param name="monospace.font.family" select="'DejaVu Sans Mono'"/>
 
 <!-- turned off due to https://issues.apache.org/bugzilla/show_bug.cgi?id=37579 -->
 <xsl:param name="ulink.footnotes" select="0"></xsl:param>
