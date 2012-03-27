@@ -52,6 +52,11 @@
       </listitem>
       <listitem>
         <para>
+          <xref linkend="cypher-query-lang" />
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <xref linkend="server" />
         </para>
       </listitem>
