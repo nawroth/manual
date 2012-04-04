@@ -31,19 +31,19 @@ function createCypherConsoles( $ )
   $('p.cypherconsole').each(function()
   {
     var title = $( 'b', this ).eq(0).text() || "Live Cypher Console";
-    var database = $( 'span.database', this ).eq(0).text() || "default-db";
+    var database = $( 'span.database', this ).eq(0).text() || false;
     var command = $( 'strong', this ).eq(0).text();
     var button = $( '<button class="cypherconsole" type="button"><img src="css/utilities-terminal.png" /> ' + title + '</button>' );
     button.click( function()
     {
-      handleCypherClick( database, command, title );
+      handleCypherClick( button, database, command, title );
     });    
     button.insertAfter( this );
   });
   
-  function handleCypherClick( database, command, title )
+  function handleCypherClick( button, database, command, title )
   {
-    console.log( database, command, title );
+    console.log( button, database, command, title );
   }
 }
 
