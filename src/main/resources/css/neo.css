@@ -502,3 +502,10 @@ button.cypherconsole img
   padding-right: .5em;
 }
 
+iframe.console
+{
+  width: 500px;
+  height: 200px;
+  display: block;
+}
+
