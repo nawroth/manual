@@ -43,7 +43,19 @@ function createCypherConsoles( $ )
   
   function handleCypherClick( button, database, command, title )
   {
-    console.log( button, database, command, title );
+    var iframe=$( "#console" );
+  	if ( iframe.length )
+    {
+  	  iframe.remove();
+  	}
+    else
+    {
+       var url="http://console.neo4j.org?";
+       url+="init="+encodeURIComponent( database );
+       url+="&query="+encodeURIComponent( command );
+       iframe = $( "<iframe/>" ).attr( "id", "console" ).addClass( "console" ).attr( "src", url );
+       button.after(iframe);
+    }
   }
 }
 
