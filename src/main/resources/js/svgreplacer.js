@@ -27,13 +27,29 @@ jQuery( document ).ready( function()
 
 function replaceSvg( $ )
 {
-  if ( supportsSvg() ) return;
-  $( "a.ulink[href$='.svg']" ).each( function ()
-  {
-    this.href += ".png";
-    var img = $( "img", this )[0];
-    img.src += ".png";
-  });
+  var transformer = supportsSvg() ? swapForInlineSvg : swapForPng;
+  $( "a.ulink[href$='.svg']" ).each( transformer );
+}
+
+function swapForInlineSvg ()
+{
+  console.log( this );
+  var svg = $( this ).svg('get'); 
+  svg.load($( this.href ).val(), {addTo: true, 
+      changeSize: false, onLoad: loadDone}); 
+//  resetSize(svg); 
+   
+  // Callback after loading external document 
+  function loadDone(svg, error) { 
+      svg.text(10, 20, error || 'Loaded into ' + this.id); 
+  }
+}
+
+function swapForPng ()
+{
+  this.href += ".png";
+  var img = $( "img", this )[0];
+  img.src += ".png";
 }
 
 function supportsSvg()
