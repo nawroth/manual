@@ -5,14 +5,14 @@ Livetest
 This is live testing.
 
 .This is a live database console
-["cypherconsole", "db1"]
+["cypherconsole", "(A) {\"name\" : \"Neo\"}"]
 ----
 start n = node(0) return n
 ----
 
 One more test, with no title.
 
-["cypherconsole", "db2"]
+["cypherconsole", "(A) {\"name\" : \"Neo\"}; (B) {\"name\" : \"Trinity\"}; (A)-[:LOVES]->B"]
 ----
 start n = node(2) return n
 ----
