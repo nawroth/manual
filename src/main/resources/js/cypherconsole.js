@@ -30,7 +30,8 @@ function createCypherConsoles( $ )
 {
   $('p.cypherconsole').each(function()
   {
-    var title = $( 'b', this ).eq(0).text() || "Live Cypher Console";
+    var title = $.trim( $( 'b', this ).eq(0).text() ) || 'Live Cypher Console';
+    title = title.replace( /\.$/, '' );
     var database = $( 'span.database', this ).eq(0).text() || false;
     var command = $( 'strong', this ).eq(0).text();
     var button = $( '<button class="cypherconsole" type="button"><img src="css/utilities-terminal.png" /> ' + title + '</button>' );
@@ -50,11 +51,11 @@ function createCypherConsoles( $ )
   	}
     else
     {
-       var url="http://console.neo4j.org?";
-       url+="init="+encodeURIComponent( database );
-       url+="&query="+encodeURIComponent( command );
+       var url="http://console.neo4j.org/?";
+       url += "init=" + encodeURIComponent( database );
+       url += "&query=" + encodeURIComponent( command );
        iframe = $( "<iframe/>" ).attr( "id", "console" ).addClass( "console" ).attr( "src", url );
-       button.after(iframe);
+       button.after( iframe );
     }
   }
 }
