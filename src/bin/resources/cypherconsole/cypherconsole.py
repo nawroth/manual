@@ -18,9 +18,12 @@ else:
         title = value
       elif key == 'db':
         db = value
+  if len(db) == 0:
+    sys.exit("A database has to be defined.")
   data = sys.stdin.readlines()
-  if len(data) > 0:
-    query = data.pop(0) 
+  if len(data) == 0:
+    sys.exit("A query has to be defined.")
+  query = ''.join(data)
   body = []
   if len(title) > 0:
     body.append('<formalpara role="cypherconsole"><title>')
@@ -28,10 +31,9 @@ else:
     body.append('</title><para>')
   else:
     body.append('<simpara role="cypherconsole">')
-  if len(db) > 0:
-    body.append('<database>')
-    body.append(db)
-    body.append('</database>')
+  body.append('<database>')
+  body.append(db)
+  body.append('</database>')
   body.append('<command>')
   body.append(query)
   body.append('</command>')

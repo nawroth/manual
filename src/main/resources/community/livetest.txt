@@ -12,15 +12,9 @@ start n = node(0) return n
 
 One more test, with no title.
 
-["cypherconsole", "(A) {&quot;name&quot; : &quot;Neo&quot;}; (B) {&quot;name&quot; : &quot;Trinity&quot;}; (A)-[:LOVES]-&gt;B"]
+["cypherconsole", "(A) {&quot;name&quot; : &quot;Neo&quot;}; (B) {&quot;name&quot; : &quot;Trinity&quot;}; (A)-[:LOVES]-&gt;(B)"]
 ----
-start n = node(2) return n
-----
-
-One more test, with no title or database specified.
-
-["cypherconsole"]
-----
-start n = node(0) return n
+start n = node(2)
+return n
 ----
 
