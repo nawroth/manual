@@ -1,0 +1,59 @@
+deck.js and Neo4j docs
+======================
+
+////
+== Slide One
+
+[options="incremental"]
+ * item 1
+ * item 2
+////
+
+== Include code ==
+
+Use something like this:
+
+[source]
+----
+ [snippet, java]
+ ----
+ component=neo4j-examples
+ source=org/neo4j/examples/EmbeddedNeo4j.java
+ classifier=sources
+ tag=createReltype
+ ----
+----
+
+to include source code from a project, rendered like this:
+
+[snippet, java]
+----
+component=neo4j-examples
+source=org/neo4j/examples/EmbeddedNeo4j.java
+classifier=sources
+tag=createReltype
+----
+
+== Include a graph == 
+
+.Hello World Graph, embedded
+["dot", "slides-Hello-World-Graph-java.svg", "meta"]
+----
+  N1 [
+    label = "message = \'Hello, \'\l"
+  ]
+  N1 -> N2 [
+    color = "#2e3436"
+    fontcolor = "#2e3436"
+    label = "KNOWS\nmessage = \'brave Neo4j \'\l"
+  ]
+  N2 [
+    label = "message = \'World!!!\'\l"
+  ]
+----
+
+== Include generated graphs == 
+
+include::{importdir}/neo4j-examples-docs-jar/dev/hello-world-java-graph.txt[]
+
+

@@ -28,12 +28,15 @@ CHUNKEDTARGET     = $(BUILDDIR)/$(PROJECTNAME).chunked
 CHUNKEDSHORTINFOTARGET = $(BUILDDIR)/$(PROJECTNAME)-html.chunked
 MANPAGES         = $(BUILDDIR)/manpages
 UPGRADE          = $(BUILDDIR)/upgrade
-FILTERSRC        = $(CURDIR)/src/bin/resources
-FILTERDEST       = ~/.asciidoc/filters
+EXTENSIONSRC     = $(CURDIR)/src/bin/extensions
+EXTENSIONDEST      = ~/.asciidoc
 SCRIPTDIR        = $(CURDIR)/src/build
 ASCIDOCDIR       = $(CURDIR)/src/bin/asciidoc
 ASCIIDOC         = $(ASCIDOCDIR)/asciidoc.py
 A2X              = $(ASCIDOCDIR)/a2x.py
+SLIDESDIR        = $(SRCDIR)/slides
+DECKSDIR         = $(BUILDDIR)/decks
+DECKJSDIR        = $(EXTENSIONSRC)/backends/deckjs/deck.js
 
 ifdef VERBOSE
 	V = -v
@@ -76,7 +79,7 @@ ASCIIDOC_FLAGS = $(V) $(VERS) $(GITVERS) $(IMPDIR)
 
 A2X_FLAGS = $(K) $(ASCIIDOC_FLAGS)
 
-.PHONY: all dist docbook help clean pdf html offline-html singlehtml text cleanup annotated manpages upgrade installfilter html-check text-check check yearcheck
+.PHONY: all dist docbook help clean pdf html offline-html singlehtml text cleanup annotated manpages upgrade installextensions html-check text-check check yearcheck deck
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
@@ -93,7 +96,7 @@ help:
 	@echo "To set the version, use 'VERSION=[the version]'".
 	@echo "To set the importdir, use 'IMPORTDIR=[the importdir]'".
 
-dist: installfilter offline-html html html-check text text-check pdf manpages upgrade cleanup yearcheck
+dist: installextensions offline-html html html-check text text-check pdf manpages upgrade cleanup yearcheck
 
 check: html-check text-check cleanup
 
@@ -117,14 +120,14 @@ ifndef KEEP
 	rm -f "$(UPGRADE)/"*.html
 endif
 
-installfilter:
+installextensions:
 	#
 	#
-	# Installing asciidoc filters.
+	# Installing asciidoc extensions.
 	#
 	#
-	mkdir -p $(FILTERDEST)
-	cp -fr "$(FILTERSRC)/"* $(FILTERDEST)
+	mkdir -p $(EXTENSIONDEST)
+	cp -fr "$(EXTENSIONSRC)/"* $(EXTENSIONDEST)
 
 copyimages:
 	#
@@ -298,12 +301,28 @@ upgrade:
 slidestest:
 	#
 	#
-	# Building slides.
+	# Building docbook slides.
 	#
 	#
 	"$(ASCIIDOC)" $(ASCIIDOC_FLAGS) --backend docbook --doctype article --conf-file="$(CONFDIR)/asciidoc.conf" --conf-file="$(CONFDIR)/docbook45.conf" --conf-file="$(CONFDIR)/docbook45-slides.conf" --out-file ./target/slidestest/article-slides.xml ./target/docs/neo4j-examples-docs-jar/dev/examples/hello-world.txt
 	xsltproc --xinclude --output ./target/slidestest/slides /usr/share/xml/docbook/stylesheet/docbook-xsl/slides/xhtml/default.xsl ./target/slidestest/article-slides.xml
 	xmllint --nonet --noout --xinclude --postvalid ./target/slidestest/article-slides.xml
+
+deck:
+	#
+	#
+	# Building deck.js slides.
+	#
+	#
+	mkdir -p "$(DECKSDIR)/deck.js"
+	mkdir -p "$(DECKSDIR)/js"
+	mkdir -p "$(DECKSDIR)/css"
+	"$(ASCIIDOC)" $(ASCIIDOC_FLAGS) -b deckjs --conf-file="$(CONFDIR)/asciidoc.conf" --conf-file="$(CONFDIR)/deckjs.conf" --out-file "$(DECKSDIR)/index.html" "$(SLIDESDIR)/example/index.txt"
+	cp -fr "$(DECKJSDIR)/"* "$(DECKSDIR)/deck.js"
+	cp -fr "$(SRCDIR)/js" "$(DECKSDIR)"
+	cp -fr "$(SRCDIR)/css/"* "$(DECKSDIR)/css"
+	cp -fr "$(IMGDIR)" "$(DECKSDIR)/"
+
 
 yearcheck:
 	#

@@ -75,12 +75,16 @@ def snippet(source=None, component=None, classifier="test-sources", tag=None,
 if __name__ == '__main__':
     import traceback
     indata = sys.stdin
+    use_raw_mode = False
     if len(sys.argv) == 2 and sys.argv[1] == '--self-test':
         PATH_PATTERN = __file__
         indata = __doc__.split('\n')
+    if len(sys.argv) == 2 and sys.argv[1] == '--raw':
+        use_raw_mode = True;
     try:
         # START SNIPPET: self-test
-        sys.stdout.write("<![CDATA[")
+        if not use_raw_mode:
+            sys.stdout.write("<![CDATA[")
         for line in snippet(**configuration(indata)):
             sys.stdout.write(line)
         # END SNIPPET: self-test
@@ -89,5 +93,6 @@ if __name__ == '__main__':
         raise
     finally:
         # START SNIPPET: self-test
-        sys.stdout.write("]]>")
+        if not use_raw_mode:
+            sys.stdout.write("]]>")
         # END SNIPPET: self-test

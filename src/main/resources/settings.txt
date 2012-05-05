@@ -1,0 +1,9 @@
+:neo4j-version: {revnumber}
+:neo4j-buildnumber: {revnumber}
+:neo4j-git-tag: {gitversion}
+
+:lucene-version: 3_5_0
+
+:console: 0
+
+

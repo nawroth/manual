@@ -415,7 +415,6 @@
             </configuration>
           </execution>
         </executions>
-        
       </plugin>
       <plugin>
         <groupId>com.mycila.maven-license-plugin</groupId>
@@ -425,6 +424,7 @@
             <exclude>src/main/resources/js/**</exclude>
             <exclude>src/main/resources/css/**</exclude>
             <exclude>src/bin/asciidoc/**</exclude>
+            <exclude>src/bin/extensions/backends/deckjs/**</exclude>
           </excludes>
         </configuration>
       </plugin>
