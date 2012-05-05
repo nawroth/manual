@@ -317,7 +317,7 @@ deck:
 	mkdir -p "$(DECKSDIR)/deck.js"
 	mkdir -p "$(DECKSDIR)/js"
 	mkdir -p "$(DECKSDIR)/css"
-	"$(ASCIIDOC)" $(ASCIIDOC_FLAGS) -b deckjs --conf-file="$(CONFDIR)/asciidoc.conf" --conf-file="$(CONFDIR)/deckjs.conf" --out-file "$(DECKSDIR)/index.html" "$(SLIDESDIR)/example/index.txt"
+	"$(ASCIIDOC)" $(ASCIIDOC_FLAGS) -b deckjs --conf-file="$(CONFDIR)/asciidoc.conf" --conf-file="$(CONFDIR)/deckjs.conf" --attribute console=1 --out-file "$(DECKSDIR)/index.html" "$(SLIDESDIR)/example/index.txt"
 	cp -fr "$(DECKJSDIR)/"* "$(DECKSDIR)/deck.js"
 	cp -fr "$(SRCDIR)/js" "$(DECKSDIR)"
 	cp -fr "$(SRCDIR)/css/"* "$(DECKSDIR)/css"
