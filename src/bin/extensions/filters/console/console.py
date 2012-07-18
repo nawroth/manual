@@ -64,3 +64,4 @@ else:
     body.append('</simpara>')
   
 sys.stdout.write(''.join(body))
+  
