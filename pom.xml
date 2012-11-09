@@ -21,7 +21,9 @@
     <docs.sourcecode>${project.build.directory}/sources</docs.sourcecode>
     <docs.test-sources>${project.build.directory}/test-sources</docs.test-sources>
     <docs.images>${project.build.outputDirectory}/images</docs.images>
+    <docs.tools>${project.build.directory}/tools</docs.tools>
     <neo4j.version>1.9-SNAPSHOT</neo4j.version>
+    <docs-plugin.skip>true</docs-plugin.skip>
   </properties>
 
   <scm>
@@ -38,6 +40,12 @@
   </licenses>
 
   <dependencies>
+    <dependency>
+      <groupId>org.neo4j.build.plugins</groupId>
+      <artifactId>neo4j-doctools</artifactId>
+      <version>1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j</artifactId>
@@ -216,6 +224,7 @@
   </dependencies>
 
   <build>
+    <outputDirectory>${project.build.directory}/src</outputDirectory>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
@@ -249,6 +258,18 @@
       <plugin>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
+          <execution>
+            <id>unpack-doctools</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <type>jar</type>
+              <includeArtifactIds>neo4j-doctools</includeArtifactIds>
+              <outputDirectory>${docs.tools}</outputDirectory>
+            </configuration>
+          </execution>
           <execution>
             <id>unpack-asciidoc-sources</id>
             <phase>generate-sources</phase>
@@ -319,7 +340,6 @@
               <arguments>
                 <argument>dist</argument>
                 <argument>VERSION=${project.version}</argument>
-                <argument>IMPORTDIR=${docs.sources}</argument>
               </arguments>
             </configuration>
           </execution>
@@ -534,9 +554,10 @@
                 <configuration>
                   <executable>make</executable>
                   <arguments>
+                    <argument>init</argument>
+                    <argument>copy-images</argument>
                     <argument>annotated</argument>
                     <argument>VERSION=${project.version}</argument>
-                    <argument>IMPORTDIR=${docs.sources}</argument>
                     <argument>KEEP=1</argument>
                     <argument>VERBOSE=1</argument>
                   </arguments>
@@ -546,13 +567,16 @@
           </plugin>
         </plugins>
       </build>
+      <properties>
+        <assembly.skipAssembly>true</assembly.skipAssembly>
+      </properties>
     </profile>
     <profile>
-      <id>single</id>
+      <id>preview</id>
       <activation>
         <activeByDefault>false</activeByDefault>
         <property>
-          <name>single</name>
+          <name>preview</name>
         </property>
       </activation>
       <build>
@@ -570,9 +594,9 @@
                 <configuration>
                   <executable>make</executable>
                   <arguments>
-                    <argument>singlehtml</argument>
+                    <argument>init</argument>
+                    <argument>preview</argument>
                     <argument>VERSION=${project.version}</argument>
-                    <argument>IMPORTDIR=${docs.sources}</argument>
                   </arguments>
                 </configuration>
               </execution>
@@ -580,6 +604,9 @@
           </plugin>
         </plugins>
       </build>
+      <properties>
+        <assembly.skipAssembly>true</assembly.skipAssembly>
+      </properties>
     </profile>
     <profile>
       <id>publish-manual</id>

@@ -31,7 +31,7 @@
       <directory>target</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>classes/**</include>
+        <include>src/**</include>
         <include>sources/**</include>
         <include>test-sources/**</include>
       </includes>

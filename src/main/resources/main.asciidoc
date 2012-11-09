@@ -1,7 +1,7 @@
-The Neo4j Manual v{revnumber}
-=============================
+The Neo4j Manual v{neo4j-version}
+=================================
 
-:neo4j-version: {revnumber}
+:revnumber: {neo4j-version}
 :neo4j-buildnumber: {revnumber}
 :neo4j-git-tag: {gitversion}
 
